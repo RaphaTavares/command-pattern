@@ -37,4 +37,17 @@ public class QuartoTest {
     void deveDeixarBaguncado(){
         assertEquals("Objetos bagunçados", quarto.getSituacao());
     }
+
+    @Test
+    void deveCancelarMoverParaEstante(){
+        Tarefa moverParaEstante = new MoverItensParaEstanteTarefa(quarto);
+        Tarefa moverParaGaveta = new MoverItensParaGavetaTarefa(quarto);
+
+        maquina.executarTarefa(moverParaGaveta);
+        maquina.executarTarefa(moverParaEstante);
+
+        maquina.cancelarUltimaTarefa();
+
+        assertEquals("Objetos na gaveta", quarto.getSituacao());
+    }
 }
